@@ -20,8 +20,8 @@ public class ArtworkServiceImpl implements ArtworkService {
     }
 
     @Override
-    public boolean addArtwork(Artwork artwork) {
-        return artworkDao.addArtwork(artwork) != 0;
+    public int addArtwork(Artwork artwork) {
+        return artworkDao.addArtwork(artwork);
     }
 
     @Override
@@ -31,6 +31,11 @@ public class ArtworkServiceImpl implements ArtworkService {
 
     @Override
     public int deleteArtWorkById(int id) {
-        return artworkDao.deleteArtWorkById(id);
+        return artworkDao.deleteArtworkById(id);
+    }
+
+    @Override
+    public int updateArtwork(Artwork artwork) {
+        return artworkDao.updateArtworkByName(artwork);
     }
 }

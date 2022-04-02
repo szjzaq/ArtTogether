@@ -14,4 +14,6 @@ public interface GalleryService {
 
     int deleteGalleryByName(String name);
 
+    int updateGalleryByName(Gallery gallery);
+
 }

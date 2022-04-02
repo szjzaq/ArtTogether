@@ -14,4 +14,6 @@ public interface GalleryDao {
     int deleteGalleryById(Integer id);
 
     int deleteGalleryByName(String name);
+
+    int updateGalleryByName(Gallery gallery);
 }

@@ -7,26 +7,41 @@
 
     <insert id="addGallery" parameterType="com.example.backend.main.domain.entity.Gallery">
         insert into gallery_list(gallery_id, gallery_name, link, description, gallery_photo, is_deleted)
-        values (#{id}, #{name},  #{link}, #{description}, #{phtotoPath}, #{idDeleted})
+        values (#{id}, #{name}, #{link}, #{description}, #{phtotoPath}, #{idDeleted})
     </insert>
 
 
     <select id="selectAllGallery" resultType="com.example.backend.main.domain.entity.Gallery">
         select *
         from gallery_list
-        where deleted = 0
+        where is_deleted = 0
     </select>
 
-    <select id="deleteGalleryById" parameterType="com.example.backend.main.domain.entity.Gallery">
+    <update id="deleteGalleryById" parameterType="String">
         update gallery_list
         set is_deleted = 1
         where name = #{name}
-    </select>
+    </update>
 
-    <select id="deleteGalleryByName" parameterType="String">
+    <update id="deleteGalleryByName" parameterType="int">
         update gallery_list
         set is_deleted = 1
         where id = #{id};
-    </select>
+    </update>
+
+    <update id="updateGalleryByName" parameterType="com.example.backend.main.domain.entity.Gallery">
+        update gallery_list
+        set
+        <if test="link!=null">
+            link = #{link} ,
+        </if>
+        <if test="description!=null">
+            description = #{description},
+        </if>
+        <if test="galleryPhoto != null">
+            gallery_photo = #{galleryPhoto}
+        </if>
+        where gallery_name = #{name}
+    </update>
 
 </mapper>

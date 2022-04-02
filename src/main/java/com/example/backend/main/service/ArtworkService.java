@@ -9,10 +9,12 @@ import java.util.List;
 public interface ArtworkService {
     List<Artwork> getArtworks();
 
-    boolean addArtwork(Artwork artwork);
+    int addArtwork(Artwork artwork);
 
     int deleteArtworkByName(String name);
 
     int deleteArtWorkById(int id);
+
+    int updateArtwork(Artwork artwork);
 
 }

@@ -14,19 +14,34 @@
     <select id="selectAllArtwork" resultType="com.example.backend.main.domain.entity.Artwork">
         select *
         from artworks
-        where deleted = 0
+        where is_deleted = 0
     </select>
 
-    <select id="deleteArtworkByName" parameterType="String">
+    <update id="deleteArtworkByName" parameterType="String">
         update artworks
         set is_deleted = 1
         where name = #{name}
-    </select>
+    </update>
 
-    <select id="deleteArtWorkById" parameterType="Integer">
-        update artwork
+    <update id="deleteArtWorkById" parameterType="int">
+        update artworks
         set is_deleted = 1
         where id = #{id};
-    </select>
+    </update>
+
+    <update id="updateArtworkByName" parameterType="com.example.backend.main.domain.entity.Artwork">
+        update artworks
+        set
+            <if test="author!=null">
+                author = #{author},
+            </if>
+            <if test="description!=null">
+                description = #{description},
+            </if>
+            <if test="artworkPath!=null">
+                artwork_path = #{artworkPath}
+            </if>
+        where name = #{name}
+    </update>
 
 </mapper>
