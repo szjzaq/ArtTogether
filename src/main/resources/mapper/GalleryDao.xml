@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.backend.main.dao.GalleryDao">
+
+    <insert id="addGallery" parameterType="com.example.backend.main.domain.entity.Gallery">
+        insert into gallery_list(gallery_id, gallery_name, link, description, gallery_photo, is_deleted)
+        values (#{id}, #{name},  #{link}, #{description}, #{phtotoPath}, #{idDeleted})
+    </insert>
+
+
+    <select id="selectAllGallery" resultType="com.example.backend.main.domain.entity.Gallery">
+        select *
+        from gallery_list
+        where deleted = 0
+    </select>
+
+    <select id="deleteGalleryById" parameterType="com.example.backend.main.domain.entity.Gallery">
+        update gallery_list
+        set is_deleted = 1
+        where name = #{name}
+    </select>
+
+    <select id="deleteGalleryByName" parameterType="String">
+        update gallery_list
+        set is_deleted = 1
+        where id = #{id};
+    </select>
+
+</mapper>

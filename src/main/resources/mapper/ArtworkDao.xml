@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.backend.main.dao.ArtworkDao">
+
+    <insert id="addArtwork" parameterType="com.example.backend.main.domain.entity.Artwork">
+        insert into artworks(artwork_id, name, author, description, artwork_path, is_deleted)
+        values (#{id}, #{name}, #{author}, #{description}, #{artworkPath}, #{idDeleted})
+    </insert>
+
+
+    <select id="selectAllArtwork" resultType="com.example.backend.main.domain.entity.Artwork">
+        select *
+        from artworks
+        where deleted = 0
+    </select>
+
+    <select id="deleteArtworkByName" parameterType="String">
+        update artworks
+        set is_deleted = 1
+        where name = #{name}
+    </select>
+
+    <select id="deleteArtWorkById" parameterType="Integer">
+        update artwork
+        set is_deleted = 1
+        where id = #{id};
+    </select>
+
+</mapper>
